@@ -8,6 +8,7 @@ class CreateTeams < ActiveRecord::Migration[5.1]
       t.integer :wins
       t.integer :draws
       t.integer :losses
+      t.integer :points
 
       t.timestamps
     end
