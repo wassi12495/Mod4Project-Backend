@@ -1,8 +1,8 @@
-class api::v1::TeamsController < ApplicationController
+class Api::V1::TeamsController < ApplicationController
 
 
     def index
-      @teams = League.all()
+      @teams = Team.all()
       render json: @teams
     end
 
@@ -14,7 +14,7 @@ class api::v1::TeamsController < ApplicationController
       if @team.save
         render json: @team
       else
-        render {error: "Invalid Team"}
+        render json: {error: "Invalid Team"}
       end
 
     end

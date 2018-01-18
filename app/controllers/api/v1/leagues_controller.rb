@@ -1,4 +1,4 @@
-class api::v1::LeaguesController < ApplicationController
+class Api::V1::LeaguesController < ApplicationController
 
 
   def index
@@ -14,7 +14,7 @@ class api::v1::LeaguesController < ApplicationController
     if @league.save
       render json: @league
     else
-      render {error: "Invalid League"}
+      render json: {errors: @league.errors.full_message}
     end
 
   end
