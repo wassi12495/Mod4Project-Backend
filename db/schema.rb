@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20180118201040) do
     t.string "name"
     t.integer "api_id"
     t.string "league_abr"
+    t.string "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

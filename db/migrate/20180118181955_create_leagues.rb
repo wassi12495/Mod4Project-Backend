@@ -4,6 +4,7 @@ class CreateLeagues < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :api_id
       t.string :league_abr
+      t.string :img
 
       t.timestamps
     end
