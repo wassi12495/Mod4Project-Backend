@@ -57,14 +57,10 @@ League.all.each do |league|
       if team.name == game.home || team.name == game.away
         team.fixtures.push(game)
         team.save
-
       end
     end
-
   end
-
 end
-
 
 league_logos = [{:league_abr => "PL", :img  => "https://goo.gl/sRzbsy"},
 {:league_abr => "DED", :img => "https://goo.gl/RouvRN"},
