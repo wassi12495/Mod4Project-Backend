@@ -37,10 +37,6 @@ League.all.each do |league|
     league.teams = league_teams
   end
 end
-<<<<<<< HEAD
-=======
-
-
 
 league_logos = [{:league_abr => "PL", :img  => "https://goo.gl/sRzbsy"},
 {:league_abr => "DED", :img => "https://goo.gl/RouvRN"},
@@ -54,4 +50,3 @@ league_logos.each do |hash|
   league.img = hash[:img]
   league.save
 end
->>>>>>> 1fc7eb65a13f3eca7277aa0a5db565ad28725452
