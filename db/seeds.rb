@@ -23,7 +23,7 @@ league_resp = FootballData.fetch(:competitions)
 
 league_resp.each do |league|
   if league["id"] == 445 || league["id"] ==449 || league["id"] ==450 || league["id"] ==452 || league["id"] ==455 ||league["id"] ==456
-    League.create(name: league["caption"], teams:[], api_id: league["id"] , league_abr: league["league"])
+    League.create(name: league["caption"], teams:[], fixtures:[], api_id: league["id"] , league_abr: league["league"])
   end
 end
 
@@ -37,12 +37,18 @@ League.all.each do |league|
     league.teams = league_teams
 
   end
-  fixtures_json = FootballData.fetch(:competitions, :fixtures, id: league.api_id)
-  fixtures_json["fixtures"].map do |game|
-    Fixture.create(home: game["homeTeamName"], away: game["awayTeamName"], home_score: game["result"]["goalsHomeTeam"], away_score: game["result"]["goalsAwayTeam"], date: game["date"], status: game["status"])
-  end
 
 end
+
+League.all.each do |league|
+  fixtures_json = FootballData.fetch(:competitions, :fixtures, id: league.api_id)
+  fixtures = fixtures_json["fixtures"].map do |game|
+    Fixture.create(home: game["homeTeamName"], away: game["awayTeamName"], home_score: game["result"]["goalsHomeTeam"], away_score: game["result"]["goalsAwayTeam"], date: game["date"], status: game["status"])
+  end
+  league.fixtures = fixtures
+  league.save
+end
+
 
 league_logos = [{:league_abr => "PL", :img  => "https://goo.gl/sRzbsy"},
 {:league_abr => "DED", :img => "https://goo.gl/RouvRN"},

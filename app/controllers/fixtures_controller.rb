@@ -1,2 +1,0 @@
-class FixturesController < ApplicationController
-end
