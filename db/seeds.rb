@@ -9,26 +9,27 @@ require 'json'
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #
-league_resp = RestClient.get("http://api.football-data.org/v1/competitions",
-      headers:  { 'X-Auth-Token': '3a013399d10f4c4b97456f63b52027de' })
+league_resp = RestClient.get("http://api.football-data.org/v1/competitions",{
+  headers:  { 'X-Auth-Token': '3a013399d10f4c4b97456f63b52027de' }
+})
 league_json = JSON.parse(league_resp)
 
 league_json.each do |league|
   League.create(name: league["caption"], teams:[], api_id: league["id"] , league_abr:league["league"])
 end
 
-League.all.each do |league|
-  teams_resp = RestClient.get("http://api.football-data.org/v1/competitions/#{league.api_id}/leagueTable", {
-        headers:  { 'X-Auth-Token': '3a013399d10f4c4b97456f63b52027de' }
-      })
-  teams_json = JSON.parse(teams_resp)
-  if !teams_json["error"]
-    league_teams = teams_json["standing"].map do |team|
-      Team.create(name: team["teamName"], position: team["position"], img: team["crestURI"], wins: team["wins"], losses: team["losses"], draws: team["draws"], points: team["points"], api_url: team["_links"]["team"]["href"])
-    end
-    league.teams = league_teams
-  end
-end
+# League.all.each do |league|
+#   teams_resp = RestClient.get("http://api.football-data.org/v1/competitions/#{league.api_id}/leagueTable", {
+#         headers:  { 'X-Auth-Token': '3a013399d10f4c4b97456f63b52027de' }
+#       })
+#   teams_json = JSON.parse(teams_resp)
+#   if !teams_json["error"]
+#     league_teams = teams_json["standing"].map do |team|
+#       Team.create(name: team["teamName"], position: team["position"], img: team["crestURI"], wins: team["wins"], losses: team["losses"], draws: team["draws"], points: team["points"], api_url: team["_links"]["team"]["href"])
+#     end
+#     league.teams = league_teams
+#   end
+# end
 
 
 #
