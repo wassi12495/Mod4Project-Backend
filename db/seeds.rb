@@ -32,7 +32,7 @@ League.all.each do |league|
   if !teams_json["error"]
 
     league_teams = teams_json["standing"].map do |team|
-      Team.create(name: team["teamName"], position: team["position"], img: team["crestURI"], wins: team["wins"], losses: team["losses"], draws: team["draws"], points: team["points"], api_url: team["_links"]["team"]["href"])
+      Team.create(name: team["teamName"], position: team["position"], img: team["crestURI"], wins: team["wins"], losses: team["losses"], draws: team["draws"], points: team["points"], api_url: team["_links"]["team"]["href"], fixtures: [])
     end
     league.teams = league_teams
 
@@ -47,6 +47,22 @@ League.all.each do |league|
   end
   league.fixtures = fixtures
   league.save
+end
+
+League.all.each do |league|
+
+  league.teams.each do |team|
+
+    league.fixtures.each do |game|
+      if team.name == game.home || team.name == game.away
+        team.fixtures.push(game)
+        team.save
+
+      end
+    end
+
+  end
+
 end
 
 
