@@ -35,7 +35,13 @@ League.all.each do |league|
       Team.create(name: team["teamName"], position: team["position"], img: team["crestURI"], wins: team["wins"], losses: team["losses"], draws: team["draws"], points: team["points"], api_url: team["_links"]["team"]["href"])
     end
     league.teams = league_teams
+
   end
+  fixtures_json = FootballData.fetch(:competitions, :fixtures, id: league.api_id)
+  fixtures_json["fixtures"].map do |game|
+    Fixture.create(home: game["homeTeamName"], away: game["awayTeamName"], home_score: game["result"]["goalsHomeTeam"], away_score: game["result"]["goalsAwayTeam"], date: game["date"], status: game["status"])
+  end
+
 end
 
 league_logos = [{:league_abr => "PL", :img  => "https://goo.gl/sRzbsy"},
