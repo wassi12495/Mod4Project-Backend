@@ -27,7 +27,6 @@ league_resp.each do |league|
   end
 end
 
-
 League.all.each do |league|
   teams_json = FootballData.fetch(:competitions, :leagueTable, id:league.api_id)
   if !teams_json["error"]
@@ -38,3 +37,21 @@ League.all.each do |league|
     league.teams = league_teams
   end
 end
+<<<<<<< HEAD
+=======
+
+
+
+league_logos = [{:league_abr => "PL", :img  => "https://goo.gl/sRzbsy"},
+{:league_abr => "DED", :img => "https://goo.gl/RouvRN"},
+{:league_abr => "FL1", :img => "https://goo.gl/jcGJez"},
+{:league_abr => "BL1", :img => "https://goo.gl/jBgj8w"},
+{:league_abr => "PD", :img => "https://goo.gl/1p1saH"},
+{:league_abr => "SA", :img => "https://goo.gl/xCdm53"}]
+
+league_logos.each do |hash|
+  league = League.find_by(:league_abr == hash[:league_abr])
+  league.img = hash[:img]
+  league.save
+end
+>>>>>>> 1fc7eb65a13f3eca7277aa0a5db565ad28725452
