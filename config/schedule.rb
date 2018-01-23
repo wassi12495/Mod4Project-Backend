@@ -18,3 +18,15 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+# ENV['RAILS_ENV'] = "development"
+set :output, "/Users/erickcamacho/Documents/FlatironSchool_103017/Module4/Mod4FinalProject/Mod4Project-Backend/log/whenever.log"
+# every 1.day, :at => '3:08 pm' do
+#   puts "hello"
+#   rake "database:fetch"
+# end
+
+every 2.minutes do
+  command " echo 'HELLO FROM CRON! :)' "
+  runner "League.fetch_api"
+end
