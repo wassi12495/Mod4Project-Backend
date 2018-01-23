@@ -22,7 +22,7 @@ league_resp = FootballData.fetch(:competitions)
 
 
 league_resp.each do |league|
-  if league["id"] == 445 || league["id"] ==449 || league["id"] ==450 || league["id"] ==452 || league["id"] ==455 ||league["id"] ==456
+  if league["id"] == 445 || league["id"] == 449 || league["id"] == 450 || league["id"] == 452 || league["id"] == 455 ||league["id"] == 456
     League.create(name: league["caption"], teams:[], fixtures:[], api_id: league["id"] , league_abr: league["league"])
   end
 end
@@ -73,4 +73,15 @@ league_logos.each do |hash|
   league = League.find_by(:league_abr == hash[:league_abr])
   league.img = hash[:img]
   league.save
+end
+
+team_logos = [{:id => 59, :img => "https://goo.gl/L4C8qc"},
+{:id => 73, :img => "https://goo.gl/cyp7aD"},
+{:id => 112, :img => "https://goo.gl/wWhmBk"},
+{:id => 116, :img => "https://goo.gl/X1oKjw"}]
+
+team_logos.each do |hash|
+  team = Team.find(hash[:id])
+  team.img = hash[:img]
+  team.save
 end
