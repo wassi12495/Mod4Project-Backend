@@ -11,18 +11,5 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def index
-    token = request.headers["Authorization"]
-    user = User.find_by(id: token)
-    if user
-      render json: {username: user.username, id: user.id}
-
-    else
-      render json: {error: 'Invalid Token '}, status: 401
-
-    end
-
-  end
-
 
 end
