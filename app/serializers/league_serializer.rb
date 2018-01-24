@@ -5,4 +5,5 @@ class LeagueSerializer < ActiveModel::Serializer
   has_many :teams
 
 
+
 end

@@ -14,7 +14,7 @@ class Api::V1::AuthController < ApplicationController
     token = request.headers["Authorization"]
     user = User.find_by(id: token)
     if user
-      render json: {username: user.username, id: user.id}
+      render json: {username: user.username, id: user.id, teams: user.teams, leagues: user.leagues}
 
     else
       render json: {error: 'Invalid Token '}, status: 401
