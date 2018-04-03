@@ -20,3 +20,8 @@ Footbally is a sports media platform that was made to resemble ESPN but just for
 
 ## Future Improvements
 * Add a news feature so users can get receive news from their favorite teams/leagues
+
+## Contributors
+
+[Josh Wasserman](https://github.com/wassi12495)
+[Erick Camacho](https://github.com/erickalexander)
