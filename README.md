@@ -4,7 +4,8 @@ Footbally is a sports media platform that was made to resemble ESPN but just for
 
 
 * Link to frontend repo: https://github.com/wassi12495/Mod4Project-Frontend
-* Link to Demo: https://www.youtube.com/watch?v=bZ9ukOJWk50
+* Link to Erick Camacho's Demo: https://www.youtube.com/watch?v=bZ9ukOJWk50
+* Link to Josh Wasserman's Demo: https://youtu.be/hJXS7TBXlmQ
 
 ## Getting Started
 1. Fork and Clone this repo
